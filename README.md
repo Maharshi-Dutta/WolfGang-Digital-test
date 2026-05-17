@@ -9,13 +9,6 @@ A React technical assessment recreating the [Wolfgang Digital Awards page](https
 
 ## Original vs Clone
 
-### Hero Section
-
-| Original | Clone |
-|---|---|
-| ![Original Hero](https://cdn.craft.cloud/019bb305-cbff-7138-bff5-e8fd056893a9/assets/images/Global-Search-Awards/003_awards_global-search-awards_freddieg_2025_54874290098_o.jpg?width=600&quality=80&fit=cover) | ![Clone Hero](https://test.maharshidutta000.workers.dev/assets/team-celebration-B_y3jrXk.jpg) |
-| wolfgangdigital.com/awards | test.maharshidutta000.workers.dev |
-
 ### Award Rows with Hover Interaction
 
 | Original | Clone |
