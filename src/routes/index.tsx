@@ -9,6 +9,7 @@ import { ConversationCTA } from "@/components/ConversationCTA";
 import { SiteFooter } from "@/components/SiteFooter";
 import { ArrowRight } from "lucide-react";
 import navPerson from "@/assets/nav-person.jpg";
+import wolfgangLogo from "@/assets/wolfgang-logo.png";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -64,17 +65,21 @@ function Index() {
               : "-translate-y-full bg-primary/95 backdrop-blur-md"
         }`}
       >
-        <a href="/" className="flex items-center gap-2.5 text-primary-foreground">
-          <span className="flex items-center justify-center w-10 h-10 rounded-full bg-primary-foreground text-primary font-black text-lg leading-none">
-            W
-          </span>
-          <span className="leading-none">
-            <span className="block font-black text-xl tracking-tight">WOLFGANG</span>
-            <span className="block text-[11px] font-light tracking-[0.2em] mt-0.5">digital</span>
-          </span>
+        <a
+          href="/"
+          aria-label="Wolfgang Digital"
+          className="relative z-40 inline-flex items-center text-primary-foreground"
+        >
+          <img
+            src={wolfgangLogo}
+            alt="Wolfgang Digital"
+            width={160}
+            height={40}
+            className="h-16 md:h-20 w-auto object-contain transition-transform duration-300 ease-out hover:translate-x-2"
+          />
         </a>
         <NavMenu />
-        <div className="hidden lg:flex items-center gap-3 group/contact">
+        <div className="relative z-40 hidden lg:flex items-center gap-3 group/contact">
           <a
             href="#contact"
             className="rounded-full border border-primary-foreground/40 text-primary-foreground pl-5 pr-5 py-2 text-sm flex items-center overflow-hidden transition-colors duration-300 group-hover/contact:bg-primary-foreground group-hover/contact:text-primary"

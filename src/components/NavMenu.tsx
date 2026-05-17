@@ -2,15 +2,22 @@ import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { ArrowUpRight, X, ChevronDown } from "lucide-react";
 import navPerson from "@/assets/nav-person.jpg";
+import wolfgangLogo from "@/assets/wolfgang-logo.png";
+import navServices from "@/assets/blog-seo.jpg";
+import navWork from "@/assets/award-gsa.jpg";
+import navAbout from "@/assets/team-celebration.jpg";
+import navInsights from "@/assets/blog-ai-ads.jpg";
+import navCareers from "@/assets/winner-card.jpg";
 import { smoothScrollTo } from "@/lib/smooth-scroll";
 
 type MenuItem = { label: string; href: string };
-type Menu = { label: string; items: MenuItem[]; cta: { label: string; href: string } };
+type Menu = { label: string; items: MenuItem[]; cta: { label: string; href: string }; image: string };
 
 const MENUS: Menu[] = [
   {
     label: "Services",
     cta: { label: "All Services", href: "#" },
+    image: navServices,
     items: [
       { label: "Search Engine Optimisation", href: "#" },
       { label: "Paid Search", href: "#" },
@@ -22,6 +29,7 @@ const MENUS: Menu[] = [
   {
     label: "Work",
     cta: { label: "All Work", href: "#" },
+    image: navWork,
     items: [
       { label: "Case Studies", href: "#" },
       { label: "Testimonials", href: "#" },
@@ -31,6 +39,7 @@ const MENUS: Menu[] = [
   {
     label: "About Us",
     cta: { label: "Meet the Team", href: "#" },
+    image: navAbout,
     items: [
       { label: "Our Story", href: "#" },
       { label: "Our Team", href: "#" },
@@ -41,6 +50,7 @@ const MENUS: Menu[] = [
   {
     label: "Insights",
     cta: { label: "All Insights", href: "#" },
+    image: navInsights,
     items: [
       { label: "Blog & Insights", href: "#" },
       { label: "News", href: "#" },
@@ -50,6 +60,7 @@ const MENUS: Menu[] = [
   {
     label: "Careers",
     cta: { label: "Join Us", href: "#" },
+    image: navCareers,
     items: [
       { label: "Job Openings", href: "#" },
       { label: "Life at Wolfgang", href: "#" },
@@ -90,7 +101,7 @@ export function NavMenu() {
       className="relative"
     >
       {/* Desktop nav */}
-      <nav className="hidden lg:flex items-center gap-8 text-primary-foreground text-sm">
+      <nav className="relative z-40 hidden lg:flex items-center gap-8 text-primary-foreground text-sm">
         {MENUS.map((m) => (
           <button
             key={m.label}
@@ -144,14 +155,14 @@ export function NavMenu() {
       >
         {/* Top bar with logo + close */}
         <div className="flex items-center justify-between px-6 md:px-12 py-6">
-          <span className="flex items-center gap-2.5">
-            <span className="flex items-center justify-center w-10 h-10 rounded-full bg-primary-foreground text-primary font-black text-lg leading-none">
-              W
-            </span>
-            <span className="leading-none">
-              <span className="block font-black text-xl tracking-tight">WOLFGANG</span>
-              <span className="block text-[11px] font-light tracking-[0.2em] mt-0.5">digital</span>
-            </span>
+          <span className="inline-flex items-center">
+            <img
+              src={wolfgangLogo}
+              alt="Wolfgang Digital"
+              width={160}
+              height={40}
+              className="h-16 md:h-20 w-auto object-contain transition-transform duration-300 ease-out hover:translate-x-2"
+            />
           </span>
           <button
             type="button"
@@ -256,7 +267,7 @@ export function NavMenu() {
 
       {/* Dropdown panel */}
       <div
-        className={`hidden lg:block fixed left-0 right-0 top-[88px] z-20 px-6 md:px-12 pt-10 pb-12 bg-background text-foreground shadow-2xl rounded-b-[2rem] md:rounded-b-[3rem] transition-all duration-300 ease-out ${
+        className={`hidden lg:block fixed left-0 right-0 top-0 z-20 px-6 md:px-12 pt-[140px] pb-12 bg-background text-foreground shadow-2xl rounded-b-[2rem] md:rounded-b-[3rem] transition-all duration-300 ease-out ${
           open
             ? "opacity-100 translate-y-0 pointer-events-auto"
             : "opacity-0 -translate-y-4 pointer-events-none"
@@ -264,6 +275,8 @@ export function NavMenu() {
         onMouseEnter={cancelClose}
         onMouseLeave={scheduleClose}
       >
+        {/* Top band behind the fixed header so its light text stays readable */}
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-[120px] bg-primary" />
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
           {/* Items */}
           <div>
@@ -299,12 +312,17 @@ export function NavMenu() {
           {/* Image */}
           <div className="hidden md:block">
             <div className="aspect-[4/3] rounded-2xl overflow-hidden bg-secondary">
-              <img
-                src={navPerson}
-                alt=""
-                aria-hidden="true"
-                className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
-              />
+              {MENUS.map((m) =>
+                open === m.label ? (
+                  <img
+                    key={m.label}
+                    src={m.image}
+                    alt=""
+                    aria-hidden="true"
+                    className="w-full h-full object-cover transition-transform duration-700 hover:scale-105 animate-in fade-in"
+                  />
+                ) : null,
+              )}
             </div>
           </div>
         </div>
