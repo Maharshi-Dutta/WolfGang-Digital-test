@@ -57,7 +57,7 @@ function Index() {
     <main className="min-h-screen bg-background text-foreground">
       {/* Header */}
       <header
-        className={`fixed top-0 left-0 right-0 z-30 flex items-center justify-between px-6 md:px-12 py-4 md:py-6 transition-all duration-300 ease-out ${
+        className={`fixed top-0 left-0 right-0 z-30 flex items-center justify-between px-6 md:px-12 py-2 md:py-3 transition-all duration-300 ease-out ${
           headerState === "top"
             ? "translate-y-0 bg-transparent"
             : headerState === "show"
